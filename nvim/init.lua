@@ -102,6 +102,8 @@ vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
 -- Neat X clipboard integration
 -- <leader>p will paste clipboard into buffer
+vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
+vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
 -- y d p P Quick copy paste into system clipboard
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
@@ -477,7 +479,7 @@ require("lazy").setup({
 				snippet = {
 					-- REQUIRED by nvim-cmp. get rid of it once we can
 					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
+						vim.snippet.expand(args.body)
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
